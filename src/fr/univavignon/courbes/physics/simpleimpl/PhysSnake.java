@@ -33,6 +33,7 @@ import fr.univavignon.courbes.common.ItemInstance;
 import fr.univavignon.courbes.common.Position;
 import fr.univavignon.courbes.common.Snake;
 import fr.univavignon.courbes.inter.simpleimpl.SettingsManager;
+import fr.univavignon.courbes.sounds.MP3;
 
 /**
  * Classe fille de {@link Snake}, permettant d'intégrer
@@ -365,7 +366,11 @@ public class PhysSnake extends Snake
 					if(dist<=Constants.ITEM_RADIUS)
 					{	// on indique qu'on a touché un item (pour sortir des deux boucles)
 						itemCollided = true;
+						String filename ="./res/sounds/Tick-DeepFrozen.mp3";
+				        MP3 mp3 = new MP3(filename);
+				        mp3.play();
 						// on le sort de la liste des items encore en jeu
+						
 						it.remove();
 						board.removedItems.add(item.itemId);
 						// on le ramasse
@@ -386,6 +391,9 @@ public class PhysSnake extends Snake
 					|| pos.x>=boardWidth-Constants.BORDER_THICKNESS)
 				{	// on marque la collision
 					eliminatedBy = -1;
+					String filename ="./res/sounds/Smashing.mp3";
+			        MP3 mp3 = new MP3(filename);
+			        mp3.play();
 					result = true;
 					// on restreint la nouvelle position du serpent
 					it.remove();

@@ -37,6 +37,8 @@ import fr.univavignon.courbes.inter.simpleimpl.MainWindow;
 import fr.univavignon.courbes.inter.simpleimpl.local.KeyManager;
 import fr.univavignon.courbes.physics.PhysicsEngine;
 import fr.univavignon.courbes.physics.simpleimpl.PhysicsEngineImpl;
+import fr.univavignon.courbes.sounds.MP3;
+import fr.univavignon.courbes.sounds.Soundloop;
 
 /**
  * Panel utilisé pour afficher le jeu proprement dit,
@@ -45,7 +47,11 @@ import fr.univavignon.courbes.physics.simpleimpl.PhysicsEngineImpl;
  * @author	L3 Info UAPV 2015-16
  */
 public abstract class AbstractRoundPanel extends JPanel implements Runnable
-{	/** Numéro de série de la classe */
+{	/**
+ * 
+ */
+//public static Sound music;
+	/** Numéro de série de la classe */
 	private static final long serialVersionUID = 1L;
 	/** Nombre désiré de mises à jour physiques par seconde */
 	protected final static int UPS = 60;
@@ -66,10 +72,14 @@ public abstract class AbstractRoundPanel extends JPanel implements Runnable
 	 */
 	public AbstractRoundPanel(MainWindow mainWindow)
 	{	super();
-		
+
 		this.mainWindow = mainWindow;
+		String filename ="./res/sounds/FINAL - BOSS.mp3";
+        MP3 son = new MP3(filename);
+        son.play();
 		init();
 		start();
+	    
 	}
 	
 	/** Fenêtre principale du jeu */
@@ -292,6 +302,6 @@ public abstract class AbstractRoundPanel extends JPanel implements Runnable
 		{	eliminatedBy[i] = snakes[i].eliminatedBy;
 			System.out.print(" "+eliminatedBy[i]);
 		}
-		System.out.println();
+		System.out.println("colision");
 	}
 }
